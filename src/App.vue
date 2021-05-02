@@ -1,7 +1,7 @@
 <template>
-  <the-nav-bar></the-nav-bar>
   <the-side-bar></the-side-bar>
   <div class="container">
+    <the-nav-bar></the-nav-bar>
     <div class="screen">
       <router-view />
     </div>
@@ -25,6 +25,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 0;
+  padding: 50px 0 50px 100px;
 }
 </style>

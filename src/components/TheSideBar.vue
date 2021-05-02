@@ -1,30 +1,40 @@
 <template>
-  <div class="container" :class="{ show: showSidebar }">
+  <div
+    v-if="$route.path !== '/'"
+    class="container"
+    :class="{ show: showSidebar }"
+  >
     <div class="control">
       <i class="fas fa-angle-double-right" @click="showNav"></i>
     </div>
     <div class="navigation-icons">
-      <router-link to="/"><i class="fas fa-home"></i></router-link>
-      <router-link to="/portfolio"
+      <router-link to="/aboutme" exact><i class="fas fa-home"></i></router-link>
+      <router-link to="/portfolio" exact
         ><i class="fas fa-camera-retro"></i
       ></router-link>
-      <router-link to="/skills"><i class="fas fa-user-circle"></i></router-link>
-      <router-link to="/contact"
+      <router-link to="/skills" exact
+        ><i class="fas fa-user-circle"></i
+      ></router-link>
+      <router-link to="/contact" exact
         ><i class="fas fa-comment-dots"></i
       ></router-link>
-      <i class="fas fa-info-circle"></i>
+      <!--      <i class="fas fa-info-circle"></i>-->
     </div>
     <div class="navigation-links">
       <transition-group name="fade">
-        <router-link to="/" v-show="showLink" key="1">Home</router-link>
-        <router-link to="/portfolio" v-show="showLink" key="2"
+        <router-link to="/aboutme" v-show="showLink" key="1" exact
+          >About Me</router-link
+        >
+        <router-link to="/portfolio" v-show="showLink" key="2" exact
           >Portfolio</router-link
         >
-        <router-link to="/skills" v-show="showLink" key="3">Skills</router-link>
-        <router-link to="/contact" v-show="showLink" key="4"
+        <router-link to="/skills" v-show="showLink" key="3" exact
+          >Skills</router-link
+        >
+        <router-link to="/contact" v-show="showLink" key="4" exact
           >Contact</router-link
         >
-        <router-link to="" v-show="showLink" key="5">FAQ</router-link>
+        <!--        <router-link to="" v-show="showLink" key="5">FAQ</router-link>-->
       </transition-group>
     </div>
   </div>
@@ -59,6 +69,7 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Anton");
 @import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");
+
 .container {
   position: absolute;
   top: 20%;
@@ -85,16 +96,20 @@ export default {
       transition: all 0.5s ease-in-out;
     }
   }
+
   &.show {
     width: 180px;
+
     .control > i {
-      color: #ff4081;
+      color: #304ffe;
       transform: rotateZ(-180deg);
     }
+
     .navigation-icons {
-      color: #ff4081;
+      color: #304ffe;
     }
   }
+
   .navigation-icons {
     display: flex;
     justify-content: center;
@@ -102,20 +117,26 @@ export default {
     flex-direction: column;
     width: 50px;
     float: left;
+
     i {
       font-size: 2rem;
       padding: 10px 0;
       cursor: pointer;
       transition: all 0.5s ease-in-out;
       color: rgba(38, 50, 56, 0.4);
+      &.active {
+        color: #304ffe;
+      }
       &:hover {
-        color: #ff4081;
+        color: #304ffe;
       }
     }
   }
+
   .navigation-links {
     padding-top: 14px;
     float: left;
+
     a {
       display: block;
       font-size: 1.35rem;
@@ -123,12 +144,16 @@ export default {
       margin-bottom: 18px;
       cursor: pointer;
       color: #263238;
+      &.active {
+        color: #304ffe;
+      }
       &:hover {
-        color: #ff4081;
+        color: #304ffe;
       }
     }
   }
 }
+
 @mixin nav-childs($values...) {
   @each $var in $values {
     &:nth-child(#{$var}) {
@@ -136,10 +161,12 @@ export default {
     }
   }
 }
+
 .fade-enter-active,
 .fade-leave-active {
   @include nav-childs(1, 2, 3, 4, 5);
 }
+
 .fade-enter,
 .fade-leave-to {
   transform: scale(0);
