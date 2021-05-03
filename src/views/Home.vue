@@ -234,7 +234,7 @@ export default {
     }
     &__arrow {
       position: relative;
-      color: #304ffe;
+      color: rgba(48, 79, 254, 1);
       font-size: calc(14px + 1vw);
       animation-name: arrow;
       animation-duration: 1s;

@@ -1,35 +1,64 @@
 <template>
   <header class="nav-bar" v-if="$route.path !== '/'">
-    <div class="nav-bar__logo">
-      <router-link to="/" exact>
-        <svg class="icon" :class="{ isActiveHome: $route.path === '/' }">
-          <use xlink:href="#svg-editor-image"></use>
-        </svg>
-      </router-link>
-    </div>
-    <div class="nav-bar__inner">
-      <nav class="nav-bar__contact">
-        <router-link
-          to="/aboutme"
-          class="nav-bar__my-contact"
-          :class="{ isActiveHome: $route.path === '/' }"
-          exact
-          >Обо мне
-        </router-link>
-        <router-link
-          to="/portfolio"
-          class="nav-bar__my-contact"
-          :class="{ isActiveHome: $route.path === '/' }"
-          exact
-          >Портфолио
-        </router-link>
-      </nav>
-      <a
-        href="mailto:vit4ly.kiselev@gmail.com"
-        class="btn"
-        :class="{ isActiveHome: $route.path === '/' }"
-        >Связаться со мной</a
-      >
+    <div class="container">
+      <div class="nav-bar__inner">
+        <div class="nav-bar__logo">
+          <router-link to="/" exact>
+            <svg class="icon-logo">
+              <use xlink:href="#svg-editor-image"></use>
+            </svg>
+          </router-link>
+        </div>
+
+        <div class="nav-bar__item">
+          <nav class="nav-bar__contact">
+            <router-link
+              v-for="{ name, path } in contactMenu"
+              :key="path"
+              :to="path"
+              class="nav-bar__my-contact"
+              :class="{ isActiveHome: $route.path === '/' }"
+              exact
+              >{{ name }}
+            </router-link>
+          </nav>
+          <a
+            href="mailto:vit4ly.kiselev@gmail.com"
+            class="btn"
+            :class="{ isActiveHome: $route.path === '/' }"
+            >Связаться со мной</a
+          >
+        </div>
+        <!--        burger-->
+        <div class="nav-bar__menu">
+          <transition name="fade" mode="out-in">
+            <div class="nav-bar__burger">
+              <div class="icon-inner" v-if="!show">
+                <svg @click="show = !show" key="menu" class="icon-menu">
+                  <use xlink:href="#menu"></use>
+                </svg>
+              </div>
+
+              <svg v-else @click="show = !show" class="icon-close">
+                <use xlink:href="#close"></use>
+              </svg>
+            </div>
+          </transition>
+        </div>
+        <transition name="fade">
+          <ul v-if="show" class="nav-bar__list">
+            <li
+              v-for="{ name, path } in menu"
+              :key="path"
+              class="nav-bar__list__item"
+            >
+              <router-link :to="path" class="nav-bar__list__link" exact>{{
+                name
+              }}</router-link>
+            </li>
+          </ul>
+        </transition>
+      </div>
     </div>
   </header>
   <svg width="0" height="0" class="hidden">
@@ -52,38 +81,92 @@
       ></image>
     </symbol>
   </svg>
+  <!-- Sprite  Close-->
+  <svg width="0" height="0" class="hidden">
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="close">
+      <path d="M0 0h24v24H0V0z" fill="none"></path>
+      <path
+        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+      ></path>
+    </symbol>
+  </svg>
+  <!-- Sprite Menu -->
+  <svg width="0" height="0" class="hidden">
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="menu">
+      <path d="M0 0h24v24H0V0z" fill="none"></path>
+      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+    </symbol>
+  </svg>
 </template>
 
 <script>
 export default {
   name: "TheNavBar",
   data() {
-    return {};
+    return {
+      show: false,
+      contactMenu: [
+        { name: "Обо мне", path: "/aboutme" },
+        { name: "Портфолио", path: "/portfolio" },
+      ],
+      menu: [
+        { name: "Обо мне", path: "/aboutme" },
+        { name: "Портфолио", path: "/portfolio" },
+        { name: "Навыки", path: "/skills" },
+        { name: "Контакты", path: "/contact" },
+      ],
+    };
   },
 };
 </script>
 
 <style scoped lang="scss">
-.icon {
+.icon-logo {
   width: 150px;
   height: 70px;
   margin: 0.5em;
 }
 
-.nav-bar {
+.icon-close {
+  margin: 0.5em;
+}
+
+.icon-menu {
+  margin: 0.1em 0.3em;
+}
+
+.icon-close,
+.icon-menu {
+  width: 50px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s;
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+.icon-inner {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  background-color: inherit;
+}
+
+.nav-bar {
+  background-color: #ffffff;
   width: 100%;
-  //position: fixed;
-  //top: 0;
-  //left: 0;
-  //right: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   //padding: 0 5vw 0;
   //box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
   //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  z-index: 2000;
+  z-index: 1000;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &__logo {
     &.active {
@@ -99,10 +182,13 @@ export default {
     max-width: 180px;
   }
 
-  &__inner {
+  &__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 678px) {
+      display: none;
+    }
   }
 
   &__contact {
@@ -126,6 +212,63 @@ export default {
     &.active {
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       color: #304ffe;
+    }
+  }
+
+  &__menu {
+    @media (min-width: 679px) {
+      display: none;
+    }
+  }
+
+  &__burger {
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    height: 50vh;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    @media (max-width: 736px) and (orientation: landscape) {
+      display: none;
+    }
+
+    &__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      font-weight: 500;
+      //height: 2em;
+      padding: 3vh;
+      cursor: pointer;
+      text-transform: uppercase;
+      //transition: all .1s ease;
+
+      &:hover {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: rgba(48, 79, 254, 1);
+      }
+    }
+
+    &__link {
+      color: #263238;
+
+      &:hover {
+        color: #304ffe;
+      }
+
+      &.active {
+        color: #304ffe;
+      }
     }
   }
 }
@@ -156,5 +299,15 @@ export default {
 .isActiveHome {
   color: #fff;
   fill: #ffffff;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

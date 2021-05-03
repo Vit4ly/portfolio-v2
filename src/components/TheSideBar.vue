@@ -71,7 +71,7 @@ export default {
 @import url("https://use.fontawesome.com/releases/v5.8.2/css/all.css");
 
 .container {
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 0;
   width: 70px;
@@ -81,6 +81,9 @@ export default {
   border-width: 0 1px 0 0;
   z-index: 999;
   transition: all 0.5s ease-in-out;
+  @media (max-width: 679px) {
+    display: none;
+  }
 
   .control {
     display: flex;

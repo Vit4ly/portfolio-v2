@@ -18,8 +18,8 @@
           </p>
           <p class="about-me__info__text">
             К выбору <span>Frontend</span> подошел осознанно, одна из причин:
-            нравится создавать что-то настраивать взамодействие, работать с UI и
-            вдыхать жизнь в проекты.
+            нравится создавать что-то и настраивать взамодействие, работать с UI
+            и вдыхать жизнь в проекты.
           </p>
           <p class="about-me__info__text">
             Полноценно обучение начал с января <span>2020</span>.
@@ -90,10 +90,13 @@ export default {
   height: auto;
 
   &__card {
-    max-width: 50vw;
+    max-width: 60vw;
     //display: grid;
     //grid-template-columns: 0.6fr 1fr;
     //grid-gap: 10px;
+    @media (max-width: 679px) {
+      max-width: 90vw;
+    }
   }
 
   &__img {
