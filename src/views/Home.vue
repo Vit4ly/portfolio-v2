@@ -1,22 +1,41 @@
 <template>
   <div class="home">
     <div class="container">
-      <div class="home__inner">
-        <div class="home__item">
-          <h1 class="home__title">Frontend Developer</h1>
-          <p class="home__text">
-            Занимаюсь тем что нравится: пишу код, разрабатываю.
-          </p>
-          <div class="home__social">
-            <i class="fab fa-telegram home__social__icon"></i>
-            <i class="fab fa-facebook home__social__icon"></i>
-            <i class="fab fa-instagram home__social__icon"></i>
-            <i class="fab fa-github home__social__icon"></i>
-            <i class="fas fa-envelope home__social__icon"></i>
+      <transition name="fade">
+        <div v-show="isVisible" class="home__inner">
+          <div class="home__item">
+            <h1 class="home__title">Frontend Developer</h1>
+            <p class="home__text">
+              Занимаюсь тем что нравится: пишу код, разрабатываю.
+            </p>
+            <div class="home__social">
+              <a
+                v-for="{ type, name, path } in social"
+                :key="name"
+                :href="path"
+                target="_blank"
+              >
+                <font-awesome-icon
+                  :icon="[type, name]"
+                  class="home__social__icon"
+                />
+              </a>
+            </div>
           </div>
         </div>
+      </transition>
+
+      <div class="home__link">
+        <font-awesome-icon
+          :icon="['fas', 'chevron-down']"
+          class="home__link__arrow"
+        />
+        <button class="home__link__btn" @click="next">Дальше</button>
       </div>
     </div>
+  </div>
+  <div class="load" v-if="isLoad">
+    <font-awesome-icon :icon="['fas', 'spinner']" class="load__icon" pulse />
   </div>
 
   <!-- SVG -->
@@ -37,13 +56,75 @@
 <script>
 export default {
   name: "Home",
-  data() {
-    return {};
+  mounted() {
+    this.visible();
   },
+  data() {
+    return {
+      isLoad: false,
+      isVisible: false,
+      social: [
+        {
+          type: "fab",
+          name: "telegram",
+          path: "tg://resolve?domain=Vit4lyKiselev",
+        },
+        {
+          type: "fab",
+          name: "facebook",
+          path: "https://www.facebook.com/profile.php?id=100001902067616",
+        },
+        {
+          type: "fab",
+          name: "instagram",
+          path: "https://www.instagram.com/vitos03/",
+        },
+        {
+          type: "fab",
+          name: "github",
+          path: "https://github.com/Vit4ly",
+        },
+        {
+          type: "fas",
+          name: "envelope",
+          path: "mailto:vit4ly.kiselev@gmail.com",
+        },
+      ],
+    };
+  },
+  methods: {
+    next() {
+      this.isLoad = true;
+      setTimeout(() => {
+        this.$router.push("/aboutme");
+        this.isLoad = false;
+      }, 1000);
+    },
+    visible() {
+      this.isVisible = !this.isVisible;
+    },
+  },
+  computed: {},
 };
 </script>
 
 <style scoped lang="scss">
+.load {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  &__icon {
+    font-size: 6vw;
+    color: rgba(48, 79, 254, 0.3);
+  }
+}
+
 .home {
   background-image: url("../assets/bgnew.png");
   background-size: 50vw;
@@ -58,7 +139,6 @@ export default {
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -500;
 
   &__inner {
     display: flex;
@@ -87,16 +167,85 @@ export default {
     display: inline-grid;
     grid-template-columns: repeat(5, 0.1fr);
     grid-gap: 1vw;
-    transition: all linear 0.3s;
 
     &__icon {
       font-size: 2vw;
+      color: #fff;
+      transition: all linear 0.3s;
 
       &:hover {
         cursor: pointer;
-        fill: #304ffe;
+        color: #304ffe;
       }
     }
   }
+
+  &__link {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__btn {
+      padding: 5px 20px;
+      border: 1px solid transparent;
+      border-radius: 50px;
+
+      box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+      color: #ffffff;
+      background-color: #304ffe;
+      transition: all linear 0.3s;
+
+      &:hover {
+        background: rgb(29, 24, 121);
+        background: linear-gradient(
+          90deg,
+          rgba(29, 24, 121, 1) 11%,
+          rgba(61, 90, 254, 1) 85%,
+          rgba(48, 79, 254, 1) 100%
+        );
+      }
+    }
+
+    &__arrow {
+      position: relative;
+      color: #304ffe;
+      font-size: calc(14px + 1vw);
+      animation-name: arrow;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    @keyframes arrow {
+      0% {
+        bottom: 0;
+      }
+      30% {
+        bottom: 1px;
+      }
+      50% {
+        bottom: 2px;
+      }
+      70% {
+        bottom: 3px;
+      }
+      100% {
+        bottom: 5px;
+      }
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -23,16 +23,16 @@
     <div class="navigation-links">
       <transition-group name="fade">
         <router-link to="/aboutme" v-show="showLink" key="1" exact
-          >About Me</router-link
+          >Обо мне</router-link
         >
         <router-link to="/portfolio" v-show="showLink" key="2" exact
-          >Portfolio</router-link
+          >Портфолио</router-link
         >
         <router-link to="/skills" v-show="showLink" key="3" exact
-          >Skills</router-link
+          >Навыки</router-link
         >
         <router-link to="/contact" v-show="showLink" key="4" exact
-          >Contact</router-link
+          >Контакты</router-link
         >
         <!--        <router-link to="" v-show="showLink" key="5">FAQ</router-link>-->
       </transition-group>
@@ -98,7 +98,7 @@ export default {
   }
 
   &.show {
-    width: 180px;
+    width: 30vw;
 
     .control > i {
       color: #304ffe;

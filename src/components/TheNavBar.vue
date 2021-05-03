@@ -83,6 +83,7 @@ export default {
   //padding: 0 5vw 0;
   //box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
   //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 2000;
 
   &__logo {
     &.active {

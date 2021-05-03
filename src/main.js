@@ -1,13 +1,31 @@
 import { createApp } from "vue";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faEnvelope,
+  faSpinner,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faTelegram,
+  faInstagram,
+  faGithub,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./theme.scss";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faPhone);
+library.add(
+  faEnvelope,
+  faChevronDown,
+  faSpinner,
+  faTelegram,
+  faInstagram,
+  faGithub,
+  faFacebook
+);
 
 createApp(App)
   .use(store)
