@@ -1,5 +1,5 @@
 <template>
-  <header class="nav-bar">
+  <header class="nav-bar" v-if="$route.path !== '/'">
     <div class="nav-bar__logo">
       <router-link to="/" exact>
         <svg class="icon" :class="{ isActiveHome: $route.path === '/' }">

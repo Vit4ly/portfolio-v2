@@ -37,7 +37,6 @@
   <div class="load" v-if="isLoad">
     <font-awesome-icon :icon="['fas', 'spinner']" class="load__icon" pulse />
   </div>
-
   <!-- SVG -->
   <svg width="0" height="0" class="hidden">
     <symbol
@@ -131,7 +130,7 @@ export default {
   background-repeat: no-repeat;
   background-position: right;
   background-color: #000000;
-  padding-top: 200px;
+  padding-top: 30vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -139,12 +138,29 @@ export default {
   bottom: 0;
   width: 100vw;
   height: 100vh;
+  @media (max-width: 1024px) {
+    padding-top: 40vh;
+  }
+  @media (max-width: 414px) {
+    padding-top: 20vh;
+  }
+  @media (max-height: 1024px) and (orientation: landscape) {
+    padding-top: 35vh;
+  }
+  @media (max-height: 320px) and (orientation: landscape) {
+    padding-top: 25vh;
+  }
 
   &__inner {
     display: flex;
     align-items: center;
     width: 50vw;
-    height: 40vh;
+    @media (max-width: 414px) {
+      width: 70vw;
+    }
+    @media (max-width: 320px) {
+      width: 75vw;
+    }
   }
 
   &__item {
@@ -169,7 +185,7 @@ export default {
     grid-gap: 1vw;
 
     &__icon {
-      font-size: 2vw;
+      font-size: calc(14px + 1vw);
       color: #fff;
       transition: all linear 0.3s;
 
@@ -181,7 +197,7 @@ export default {
   }
 
   &__link {
-    margin-top: 50px;
+    margin-top: 15vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,7 +223,15 @@ export default {
         );
       }
     }
-
+    @media (max-height: 414px) and (orientation: landscape) {
+      margin-top: -5vh;
+    }
+    @media (max-width: 414px) {
+      margin-top: 40vh;
+    }
+    @media (max-height: 320px) and (orientation: landscape) {
+      margin-top: -5vh;
+    }
     &__arrow {
       position: relative;
       color: #304ffe;

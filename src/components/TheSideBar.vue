@@ -98,7 +98,7 @@ export default {
   }
 
   &.show {
-    width: 30vw;
+    width: 100vw;
 
     .control > i {
       color: #304ffe;
