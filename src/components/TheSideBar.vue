@@ -32,21 +32,8 @@
           :key="id + 1"
           v-show="showLink"
           exact
-          >{{ name }}</router-link
-        >
-        <!--        <router-link to="path" v-show="showLink" key="1" exact-->
-        <!--          >Обо мне</router-link-->
-        <!--        >-->
-        <!--        <router-link to="/portfolio" v-show="showLink" key="2" exact-->
-        <!--          >Портфолио</router-link-->
-        <!--        >-->
-        <!--        <router-link to="/skills" v-show="showLink" key="3" exact-->
-        <!--          >Навыки</router-link-->
-        <!--        >-->
-        <!--        <router-link to="/contact" v-show="showLink" key="4" exact-->
-        <!--          >Контакты</router-link-->
-        <!--        >-->
-        <!--                <router-link to="" v-show="showLink" key="5">FAQ</router-link>-->
+          >{{ name }}
+        </router-link>
       </transition-group>
     </div>
   </div>
@@ -156,9 +143,11 @@ export default {
       cursor: pointer;
       transition: all 0.5s ease-in-out;
       color: rgba(38, 50, 56, 0.4);
+
       &.active {
         color: #304ffe;
       }
+
       &:hover {
         color: #304ffe;
       }
@@ -176,9 +165,11 @@ export default {
       margin-bottom: 16px;
       cursor: pointer;
       color: #263238;
+
       &.active {
         color: #304ffe;
       }
+
       &:hover {
         color: #304ffe;
       }

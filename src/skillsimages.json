@@ -1,0 +1,19 @@
+{
+  "skillsImages" : [
+    {"name": "html", "path": "html"},
+    {"name": "css", "path": "css"},
+    {"name": "scss", "path": "scss"},
+    {"name": "materializecss", "path": "materializecss"},
+    {"name": "bootstrap", "path": "bootstrap"},
+    {"name": "tailwind", "path": "tailwind"},
+    {"name": "js", "path": "js"},
+    {"name": "vue", "path": "vue"},
+    {"name": "node", "path": "node"},
+    {"name": "webpack", "path": "webpack"},
+    {"name": "npm", "path": "npm"},
+    {"name": "yarn", "path": "yarn"},
+    {"name": "webstorm", "path": "webstorm"},
+    {"name": "vscode", "path": "vscode"},
+    {"name": "git", "path": "git"}
+  ]
+}
