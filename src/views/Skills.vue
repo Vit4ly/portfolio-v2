@@ -1,14 +1,12 @@
 <template>
   <div class="skills">
-    <!--    <div v-for="{ name, path } in imgSkills" :key="name" class="skills__card">-->
-    <!--      <img :src="require(`../assets/skills/${path}.png`)" alt="" class="skills__img" />-->
-    <!--    </div>-->
-
-    <app-card-skills
-      v-for="{ name, path } in getImagesSkills"
-      :key="name"
-      :img="path"
-    ></app-card-skills>
+    <keep-alive>
+      <app-card-skills
+        v-for="{ name, path } in getImagesSkills"
+        :key="name"
+        :img="path"
+      ></app-card-skills>
+    </keep-alive>
   </div>
 </template>
 
@@ -38,22 +36,10 @@ export default {
 
 <style scoped lang="scss">
 .skills {
+  max-width: 70vw;
+  //max-height: 50vh;
   display: grid;
   grid-template-columns: repeat(5, 0.3fr);
-  grid-gap: 2vw;
-
-  //&__card {
-  //  display: flex;
-  //  align-items: center;
-  //  justify-content: center;
-  //  border: 1px solid rgba(0, 0, 0, 0.1);
-  //  border-radius: 10px;
-  //  padding: 5px;
-  //  //box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
-  //}
-  //
-  //&__img {
-  //  border-radius: 10px;
-  //}
+  grid-gap: 3vw;
 }
 </style>

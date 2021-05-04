@@ -10,6 +10,7 @@ import {
   faCommentDots,
   faInfoCircle,
   faAngleDoubleRight,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faTelegram,
@@ -32,6 +33,7 @@ library.add(
   faUserCircle,
   faCommentDots,
   faInfoCircle,
+  faTimes,
   faAngleDoubleRight,
   faTelegram,
   faInstagram,

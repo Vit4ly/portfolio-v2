@@ -1,21 +1,23 @@
 <template>
   <the-side-bar></the-side-bar>
-  <!--  <div class="container">-->
+
   <the-nav-bar></the-nav-bar>
   <div class="screen">
     <router-view />
   </div>
-  <!--  </div>-->
+  <app-modal></app-modal>
 </template>
 
 <script>
 import TheNavBar from "@/components/TheNavBar";
 import TheSideBar from "@/components/TheSideBar";
+import AppModal from "@/components/AppModal";
 
 export default {
   components: {
     TheNavBar,
     TheSideBar,
+    AppModal,
   },
 };
 </script>

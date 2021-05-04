@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    error: String,
     imagesSkills: [],
   },
   mutations: {},
@@ -17,9 +18,8 @@ export default createStore({
           "https://vitaliy-kiselev-portfolio-default-rtdb.firebaseio.com/skillsImages.json"
         );
         context.state.imagesSkills = await response.json();
-        console.log(this.state.imagesSkills);
       } catch (e) {
-        console.error(e);
+        context.state.error = e;
       }
     },
   },

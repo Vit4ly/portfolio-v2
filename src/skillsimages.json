@@ -1,19 +1,24 @@
 {
   "skillsImages" : [
-    {"name": "html", "path": "html"},
-    {"name": "css", "path": "css"},
-    {"name": "scss", "path": "scss"},
+    {"name": "html", "path": "html", "text": "Обучение по верстке начинал с HTMLAcademy а так же видео, статьи."},
+    {"name": "css", "path": "css", "text": "Изучение и применение CSS было параллельно обучению HTM. C применением Flex и Grid ускорил верстку в разы"},
+    {"name": "scss&bem", "path": "scss", "text": "Scss стал использовать сразу как только освоился с версткой, значительно упрощает управление вложенностью, с БЭМ проще с поддержкой кода и повторного использования блоков."},
     {"name": "materializecss", "path": "materializecss"},
-    {"name": "bootstrap", "path": "bootstrap"},
+    {"name": "bootstrap", "path": "bootstrap", "text": ""},
     {"name": "tailwind", "path": "tailwind"},
-    {"name": "js", "path": "js"},
-    {"name": "vue", "path": "vue"},
-    {"name": "node", "path": "node"},
-    {"name": "webpack", "path": "webpack"},
+    {"name": "js", "path": "js", "text":  "Для изучения были задействованы такие ресурсы как: CodeCademy, CodeBasic, FreeCodeCamp,Html Academy,Платформа Hexlet.io, по специализации Frontend Developer (JavaScript).Hexlet оставил значительный отпечаток, в хорошем смысле этого слова при формировании фундамента программирования, и изучения языка. На CodeWars решаю 1-2 задачи в день. Книги: Серия книгYDKJS, JS Сильные стороны, Learn JS"},
+    {"name": "vue", "path": "vue" ,"text": "Изучение VueJS начал с официальной документации и видео, так же дополнительно прошел курс Vue 3"},
+    {"name": "node", "path": "node", "text": "На текущий момент прохожу курс от RSSchool по NodeJs. Курс построен исключительно на практике. Дополнительно затронутые темы Express, TypeScript, PostgreSQL, Docker"},
+    {"name": "webpack", "path": "webpack", "text": "Для сборки не больших проектов использую Parcel,Webpack научился настраивать для сборки проектов."},
     {"name": "npm", "path": "npm"},
     {"name": "yarn", "path": "yarn"},
+    {"name": "prettier", "path": "prettier"},
+    {"name": "eslint", "path": "eslint"},
     {"name": "webstorm", "path": "webstorm"},
     {"name": "vscode", "path": "vscode"},
-    {"name": "git", "path": "git"}
+    {"name": "git", "path": "git"},
+    {"name": "avocode", "path": "avocode"},
+    {"name": "figma", "path": "figma"},
+    {"name": "ps", "path": "photoshop"}
   ]
 }

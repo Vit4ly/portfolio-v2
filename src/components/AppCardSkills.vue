@@ -32,6 +32,7 @@ export default {
 
   &__img {
     border-radius: 10px;
+    max-height: 50vh;
   }
 }
 </style>
