@@ -11,12 +11,16 @@ import {
   faInfoCircle,
   faAngleDoubleRight,
   faTimes,
+  faUser,
+  faMobileAlt,
+  faFilePdf,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faTelegram,
   faInstagram,
   faGithub,
   faFacebook,
+  faSkype,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./App.vue";
@@ -34,11 +38,15 @@ library.add(
   faCommentDots,
   faInfoCircle,
   faTimes,
+  faUser,
+  faFilePdf,
+  faMobileAlt,
   faAngleDoubleRight,
   faTelegram,
   faInstagram,
   faGithub,
-  faFacebook
+  faFacebook,
+  faSkype
 );
 
 createApp(App)

@@ -10,7 +10,7 @@
             </p>
             <div class="home__social">
               <a
-                v-for="{ type, name, path } in social"
+                v-for="{ type, name, path } in getFilteredHomeSocial"
                 :key="name"
                 :href="path"
                 target="_blank"
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Home",
   mounted() {
@@ -62,33 +64,6 @@ export default {
     return {
       isLoad: false,
       isVisible: false,
-      social: [
-        {
-          type: "fab",
-          name: "telegram",
-          path: "tg://resolve?domain=Vit4lyKiselev",
-        },
-        {
-          type: "fab",
-          name: "facebook",
-          path: "https://www.facebook.com/profile.php?id=100001902067616",
-        },
-        {
-          type: "fab",
-          name: "instagram",
-          path: "https://www.instagram.com/vitos03/",
-        },
-        {
-          type: "fab",
-          name: "github",
-          path: "https://github.com/Vit4ly",
-        },
-        {
-          type: "fas",
-          name: "envelope",
-          path: "mailto:vit4ly.kiselev@gmail.com",
-        },
-      ],
     };
   },
   methods: {
@@ -103,7 +78,9 @@ export default {
       this.isVisible = !this.isVisible;
     },
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["getFilteredHomeSocial"]),
+  },
 };
 </script>
 

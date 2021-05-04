@@ -1,0 +1,46 @@
+{
+  "social": [
+    {
+      "path": "tel:+79052066661",
+      "text": "+7(905)2066661",
+      "type": "fas",
+      "name": "mobile-alt"
+    },
+    {
+      "path": "mailto:vit4ly.kiselev@gmail.com",
+      "text": "Vit4ly.kiselev@gmail.com",
+      "type": "fas",
+      "name": "envelope"
+    },
+    {
+      "path": "skype:live:.cid.5ab92a5ce4ae2837",
+      "text": "Связаться в Skype",
+      "type": "fab",
+      "name": "skype"
+    },
+    {
+      "type": "fab",
+      "name": "telegram",
+      "path": "tg://resolve?domain=Vit4lyKiselev",
+      "text": "Написать в Telegram"
+    },
+    {
+      "type": "fab",
+      "name": "facebook",
+      "path": "https://www.facebook.com/profile.php?id=100001902067616",
+      "text": "Написать в Facebook"
+    },
+    {
+      "type": "fab",
+      "name": "instagram",
+      "path": "https://www.instagram.com/vitos03/",
+      "text": "О себе в картинках"
+    },
+    {
+      "type": "fab",
+      "name": "github",
+      "path": "https://github.com/Vit4ly",
+      "text": "Здесь можно посмотреть на код"
+    }
+  ]
+}
