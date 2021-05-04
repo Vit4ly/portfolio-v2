@@ -114,6 +114,7 @@ export default {
         { name: "Портфолио", path: "/portfolio" },
         { name: "Навыки", path: "/skills" },
         { name: "Контакты", path: "/contact" },
+        { name: "FAQ", path: "/faq" },
       ],
     };
   },
@@ -239,7 +240,9 @@ export default {
     @media (max-width: 736px) and (orientation: landscape) {
       display: none;
     }
-
+    @media (min-width: 679px) {
+      display: none;
+    }
     &__item {
       display: flex;
       justify-content: center;

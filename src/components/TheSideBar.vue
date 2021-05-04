@@ -5,36 +5,48 @@
     :class="{ show: showSidebar }"
   >
     <div class="control">
-      <i class="fas fa-angle-double-right" @click="showNav"></i>
+      <font-awesome-icon
+        class="control__icon"
+        icon="angle-double-right"
+        @click="showNav"
+      />
     </div>
     <div class="navigation-icons">
-      <router-link to="/aboutme" exact><i class="fas fa-home"></i></router-link>
-      <router-link to="/portfolio" exact
-        ><i class="fas fa-camera-retro"></i
-      ></router-link>
-      <router-link to="/skills" exact
-        ><i class="fas fa-user-circle"></i
-      ></router-link>
-      <router-link to="/contact" exact
-        ><i class="fas fa-comment-dots"></i
-      ></router-link>
-      <!--      <i class="fas fa-info-circle"></i>-->
+      <router-link
+        v-for="{ path, icon, type } in menu"
+        :key="path"
+        :to="path"
+        exact
+      >
+        <font-awesome-icon
+          :icon="[type, icon]"
+          class="navigation-icons__nav-icon"
+        />
+      </router-link>
     </div>
     <div class="navigation-links">
       <transition-group name="fade">
-        <router-link to="/aboutme" v-show="showLink" key="1" exact
-          >Обо мне</router-link
+        <router-link
+          v-for="({ path, name }, id) in menu"
+          :to="path"
+          :key="id + 1"
+          v-show="showLink"
+          exact
+          >{{ name }}</router-link
         >
-        <router-link to="/portfolio" v-show="showLink" key="2" exact
-          >Портфолио</router-link
-        >
-        <router-link to="/skills" v-show="showLink" key="3" exact
-          >Навыки</router-link
-        >
-        <router-link to="/contact" v-show="showLink" key="4" exact
-          >Контакты</router-link
-        >
-        <!--        <router-link to="" v-show="showLink" key="5">FAQ</router-link>-->
+        <!--        <router-link to="path" v-show="showLink" key="1" exact-->
+        <!--          >Обо мне</router-link-->
+        <!--        >-->
+        <!--        <router-link to="/portfolio" v-show="showLink" key="2" exact-->
+        <!--          >Портфолио</router-link-->
+        <!--        >-->
+        <!--        <router-link to="/skills" v-show="showLink" key="3" exact-->
+        <!--          >Навыки</router-link-->
+        <!--        >-->
+        <!--        <router-link to="/contact" v-show="showLink" key="4" exact-->
+        <!--          >Контакты</router-link-->
+        <!--        >-->
+        <!--                <router-link to="" v-show="showLink" key="5">FAQ</router-link>-->
       </transition-group>
     </div>
   </div>
@@ -46,6 +58,23 @@ export default {
     return {
       showSidebar: false,
       showLink: false,
+      menu: [
+        { name: "Обо мне", path: "/aboutme", icon: "home", type: "fas" },
+        {
+          name: "Портфолио",
+          path: "/portfolio",
+          icon: "camera-retro",
+          type: "fas",
+        },
+        { name: "Навыки", path: "/skills", icon: "user-circle", type: "fas" },
+        {
+          name: "Контакты",
+          path: "/contact",
+          icon: "comment-dots",
+          type: "fas",
+        },
+        { name: "FAQ", path: "/faq", icon: "info-circle", type: "fas" },
+      ],
     };
   },
   methods: {
@@ -92,7 +121,7 @@ export default {
     width: 50px;
     margin-bottom: 10px;
 
-    i {
+    &__icon {
       font-size: 2rem;
       cursor: pointer;
       color: rgba(38, 50, 56, 0.4);
@@ -103,7 +132,7 @@ export default {
   &.show {
     width: 100vw;
 
-    .control > i {
+    .control__icon {
       color: #304ffe;
       transform: rotateZ(-180deg);
     }
@@ -121,8 +150,8 @@ export default {
     width: 50px;
     float: left;
 
-    i {
-      font-size: 2rem;
+    svg {
+      font-size: 3rem;
       padding: 10px 0;
       cursor: pointer;
       transition: all 0.5s ease-in-out;
@@ -137,14 +166,14 @@ export default {
   }
 
   .navigation-links {
-    padding-top: 14px;
+    padding-top: 12px;
     float: left;
 
     a {
       display: block;
       font-size: 1.35rem;
       padding-left: 10px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       cursor: pointer;
       color: #263238;
       &.active {
