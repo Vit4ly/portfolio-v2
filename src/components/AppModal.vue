@@ -1,52 +1,50 @@
 <template>
-  <div class="modal" v-if="isShow" @click="isShown">
-    <div class="modal__inner">
-      <div class="modal__card">
-        <font-awesome-icon icon="times" class="modal__icon" @click="isShown" />
-        <div class="modal__card__image-inner">
-          <img src="../assets/skills/html.png" class="modal__img" alt="" />
-        </div>
-        <div class="modal__card__item">
-          <h3 class="modal__card__item__title">HTML</h3>
-          <p class="modal__card__item__text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            accusantium eveniet iusto maiores natus ullam voluptatum. A aperiam
-            asperiores autem beatae blanditiis cumque dolorem ea eaque, enim,
-            eos eum exercitationem ipsam molestias mollitia nam nobis nulla
-            officia perferendis porro quam, quia reprehenderit sunt tenetur
-            totam unde ut vel voluptate voluptatem!
-          </p>
+  <transition name="modal">
+    <div class="modal" v-if="getIsShown">
+      <div class="modal__inner">
+        <div class="modal__card">
+          <font-awesome-icon
+            icon="times"
+            class="modal__icon"
+            @click="isShown"
+          />
+          <div class="modal__card__image-inner">
+            <div class="modal__img">
+              <slot name="image" />
+            </div>
+          </div>
+          <div class="modal__card__item">
+            <h3 class="modal__card__item__title"><slot name="name" /></h3>
+            <p class="modal__card__item__text"><slot name="text" /></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "AppModal",
-  data() {
-    return {
-      isShow: false,
-    };
-  },
   methods: {
-    isShown() {
-      this.isShow = !this.isShow;
-    },
+    ...mapMutations(["isShown"]),
+  },
+  computed: {
+    ...mapGetters(["getIsShown"]),
   },
 };
 </script>
 
 <style scoped lang="scss">
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 2000;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
 
   &__icon {
     color: #263238;
@@ -68,6 +66,7 @@ export default {
   }
 
   &__img {
+    padding: 30px;
     width: 100%;
     height: auto;
   }
@@ -75,7 +74,7 @@ export default {
   &__card {
     position: relative;
     margin-top: 30vh;
-    width: 40vw;
+    max-width: 40vw;
     display: grid;
     grid-template-columns: 0.6fr 1fr;
     align-items: center;
@@ -83,16 +82,35 @@ export default {
     background-color: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+    box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+    @media (max-width: 679px) {
+      max-width: 80vw;
+    }
+    @media (orientation: landscape) {
+      margin-top: 15vh;
+    }
 
     &__item {
       padding: 20px;
 
       &__title {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: calc(14px + 0.5vw);
       }
-
       &__text {
       }
     }
   }
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
 }
 </style>

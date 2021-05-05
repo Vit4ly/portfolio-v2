@@ -13,7 +13,7 @@
         <div class="nav-bar__item">
           <nav class="nav-bar__contact">
             <router-link
-              v-for="{ name, path } in contactMenu"
+              v-for="{ name, path } in getFilteredMenu"
               :key="path"
               :to="path"
               class="nav-bar__my-contact"
@@ -46,9 +46,9 @@
           </transition>
         </div>
         <transition name="fade">
-          <ul v-if="show" class="nav-bar__list">
+          <ul v-if="show" class="nav-bar__list" @click="eventClick">
             <li
-              v-for="{ name, path } in menu"
+              v-for="{ name, path } in getMenu"
               :key="path"
               class="nav-bar__list__item"
             >
@@ -100,23 +100,25 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TheNavBar",
   data() {
     return {
       show: false,
-      contactMenu: [
-        { name: "Обо мне", path: "/aboutme" },
-        { name: "Портфолио", path: "/portfolio" },
-      ],
-      menu: [
-        { name: "Обо мне", path: "/aboutme" },
-        { name: "Портфолио", path: "/portfolio" },
-        { name: "Навыки", path: "/skills" },
-        { name: "Контакты", path: "/contact" },
-        { name: "FAQ", path: "/faq" },
-      ],
     };
+  },
+  methods: {
+    // eventClick(e) {
+    //   console.log(e.target.parentNode.parentNode)
+    //   if(e.target.parentNode.className !== 'nav-bar__inner') {
+    //     this.show = false
+    //   }
+    // }
+  },
+  computed: {
+    ...mapGetters(["getMenu", "getFilteredMenu"]),
   },
 };
 </script>
@@ -158,9 +160,6 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  //padding: 0 5vw 0;
-  //box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
-  //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 1000;
 
   &__inner {
@@ -200,7 +199,6 @@ export default {
 
   &__my-contact {
     padding: 0 15px;
-    //text-decoration: none;
     font-size: 18px;
     font-weight: 500;
     color: #263238;
@@ -211,7 +209,7 @@ export default {
     }
 
     &.active {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(48, 79, 254, 0.3);
       color: #304ffe;
     }
   }
@@ -234,11 +232,11 @@ export default {
     position: absolute;
     top: 80px;
     left: 0;
-    height: 50vh;
+    height: 45vh;
     width: 100%;
     background: rgba(255, 255, 255, 0.9);
-    @media (max-width: 736px) and (orientation: landscape) {
-      display: none;
+    @media (orientation: landscape) {
+      height: 60vh;
     }
     @media (min-width: 679px) {
       display: none;
@@ -247,18 +245,17 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.5em;
+      font-size: calc(14px + 1vw);
       font-weight: 500;
-      //height: 2em;
-      padding: 3vh;
+      padding: 1.7vh;
       cursor: pointer;
-      text-transform: uppercase;
+      //text-transform: uppercase;
       //transition: all .1s ease;
 
       &:hover {
         width: 100%;
         background-color: rgba(0, 0, 0, 0.1);
-        color: rgba(48, 79, 254, 1);
+        color: #304ffe;
       }
     }
 
@@ -271,6 +268,7 @@ export default {
 
       &.active {
         color: #304ffe;
+        text-decoration: underline;
       }
     }
   }

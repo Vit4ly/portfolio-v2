@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    isShow: false,
     error: String,
     imagesSkills: [],
     social: [
@@ -54,8 +55,26 @@ export default createStore({
         text: "CV на сайте HH",
       },
     ],
+    menu: [
+      { name: "Обо мне", path: "/aboutme" },
+      { name: "Портфолио", path: "/portfolio" },
+      { name: "Навыки", path: "/skills" },
+      { name: "Контакты", path: "/contact" },
+      { name: "FAQ", path: "/faq" },
+    ],
   },
-  mutations: {},
+  mutations: {
+    isShown(state) {
+      state.isShow = !state.isShow;
+    },
+    // eventClick(state, event) {
+    //     console.log(event.target.parentNode)
+    //     let eve = event.target.parentNode.className
+    //     if(eve !== 'container' || eve.length === 0) {
+    //        state.isShow = false
+    //     }
+    // }
+  },
   getters: {
     getImagesSkills(state) {
       return state.imagesSkills;
@@ -65,6 +84,17 @@ export default createStore({
     },
     getFilteredHomeSocial(state) {
       return state.social.filter(({ type }) => type === "fab");
+    },
+    getMenu(state) {
+      return state.menu;
+    },
+    getFilteredMenu(state) {
+      return state.menu.filter(
+        ({ path }) => path === "/aboutme" || path === "/portfolio"
+      );
+    },
+    getIsShown(state) {
+      return state.isShow;
     },
   },
   actions: {

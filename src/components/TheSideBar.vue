@@ -117,7 +117,7 @@ export default {
   }
 
   &.show {
-    width: 100vw;
+    width: 200px;
 
     .control__icon {
       color: #304ffe;
