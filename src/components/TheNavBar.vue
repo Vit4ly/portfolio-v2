@@ -33,20 +33,20 @@
         <div class="nav-bar__menu">
           <transition name="fade" mode="out-in">
             <div class="nav-bar__burger">
-              <div class="icon-inner" v-if="!show">
-                <svg @click="show = !show" key="menu" class="icon-menu">
+              <div class="icon-inner" v-if="!getIsShown">
+                <svg @click="navbarShow" key="menu" class="icon-menu">
                   <use xlink:href="#menu"></use>
                 </svg>
               </div>
 
-              <svg v-else @click="show = !show" class="icon-close">
+              <svg v-else @click="navbarShow" class="icon-close">
                 <use xlink:href="#close"></use>
               </svg>
             </div>
           </transition>
         </div>
         <transition name="fade">
-          <ul v-if="show" class="nav-bar__list" @click="eventClick">
+          <ul v-if="getIsShown" class="nav-bar__list">
             <li
               v-for="{ name, path } in getMenu"
               :key="path"
@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "TheNavBar",
@@ -110,6 +110,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["navbarShow"]),
     // eventClick(e) {
     //   console.log(e.target.parentNode.parentNode)
     //   if(e.target.parentNode.className !== 'nav-bar__inner') {
@@ -118,7 +119,7 @@ export default {
     // }
   },
   computed: {
-    ...mapGetters(["getMenu", "getFilteredMenu"]),
+    ...mapGetters(["getMenu", "getFilteredMenu", "getIsShown"]),
   },
 };
 </script>
@@ -232,7 +233,7 @@ export default {
     position: absolute;
     top: 80px;
     left: 0;
-    height: 45vh;
+    height: 35vh;
     width: 100%;
     background: rgba(255, 255, 255, 0.9);
     @media (orientation: landscape) {

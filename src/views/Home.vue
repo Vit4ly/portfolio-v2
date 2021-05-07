@@ -158,7 +158,7 @@ export default {
   &__social {
     margin-top: 20px;
     display: inline-grid;
-    grid-template-columns: repeat(5, 0.1fr);
+    grid-template-columns: repeat(6, 0.1fr);
     grid-gap: 1vw;
 
     &__icon {

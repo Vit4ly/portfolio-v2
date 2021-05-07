@@ -13,7 +13,7 @@
     </div>
     <div class="navigation-icons">
       <router-link
-        v-for="{ path, icon, type } in menu"
+        v-for="{ path, icon, type } in getMenu"
         :key="path"
         :to="path"
         exact
@@ -27,7 +27,7 @@
     <div class="navigation-links">
       <transition-group name="fade">
         <router-link
-          v-for="({ path, name }, id) in menu"
+          v-for="({ path, name }, id) in getMenu"
           :to="path"
           :key="id + 1"
           v-show="showLink"
@@ -40,28 +40,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data: () => {
     return {
       showSidebar: false,
       showLink: false,
-      menu: [
-        { name: "Обо мне", path: "/aboutme", icon: "home", type: "fas" },
-        {
-          name: "Портфолио",
-          path: "/portfolio",
-          icon: "camera-retro",
-          type: "fas",
-        },
-        { name: "Навыки", path: "/skills", icon: "user-circle", type: "fas" },
-        {
-          name: "Контакты",
-          path: "/contact",
-          icon: "comment-dots",
-          type: "fas",
-        },
-        { name: "FAQ", path: "/faq", icon: "info-circle", type: "fas" },
-      ],
     };
   },
   methods: {
@@ -78,6 +63,9 @@ export default {
         }, 500);
       }
     },
+  },
+  computed: {
+    ...mapGetters(["getMenu"]),
   },
 };
 </script>

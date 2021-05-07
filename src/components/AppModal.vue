@@ -1,12 +1,12 @@
 <template>
   <transition name="modal">
-    <div class="modal" v-if="getIsShown">
+    <div class="modal" v-if="getIsShownModal">
       <div class="modal__inner">
         <div class="modal__card">
           <font-awesome-icon
             icon="times"
             class="modal__icon"
-            @click="isShown"
+            @click="isShownModal"
           />
           <div class="modal__card__image-inner">
             <div class="modal__img">
@@ -29,10 +29,10 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "AppModal",
   methods: {
-    ...mapMutations(["isShown"]),
+    ...mapMutations(["isShownModal"]),
   },
   computed: {
-    ...mapGetters(["getIsShown"]),
+    ...mapGetters(["getIsShownModal"]),
   },
 };
 </script>
@@ -40,7 +40,7 @@ export default {
 <style scoped lang="scss">
 .modal {
   position: fixed;
-  top: 0;
+  top: 20%;
   left: 0;
   width: 100%;
   height: 100%;
@@ -69,12 +69,15 @@ export default {
     padding: 30px;
     width: 100%;
     height: auto;
+    @media (max-width: 414px) {
+      width: 30%;
+    }
   }
 
   &__card {
     position: relative;
-    margin-top: 30vh;
-    max-width: 40vw;
+    margin-top: 40vw;
+    max-width: 50vw;
     display: grid;
     grid-template-columns: 0.6fr 1fr;
     align-items: center;
@@ -83,8 +86,14 @@ export default {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
-    @media (max-width: 679px) {
+    @media (max-width: 1024px) {
       max-width: 80vw;
+    }
+    @media (max-width: 679px) {
+      max-width: 90vw;
+    }
+    @media (max-width: 414px) {
+      grid-template-columns: 1fr;
     }
     @media (orientation: landscape) {
       margin-top: 15vh;

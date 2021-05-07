@@ -1,7 +1,8 @@
 <template>
   <div class="card">
     <img
-      :src="currentUrl"
+      loading="lazy"
+      :src="img"
       alt=""
       class="card__img"
       @click="$emit('getModal', text, img, name)"
@@ -24,11 +25,9 @@ export default {
       type: String,
     },
   },
-  computed: {
-    currentUrl() {
-      return require(`../assets/skills/${this.img}.png`);
-    },
-  },
+  // directives: {
+  //   LazyLoad
+  // }
 };
 </script>
 
@@ -41,6 +40,7 @@ export default {
   border-radius: 10px;
   padding: 5px;
   box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+  overflow: hidden;
 
   &__img {
     border-radius: 10px;

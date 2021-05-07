@@ -3,7 +3,10 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     isShow: false,
-    error: String,
+    isShowModal: false,
+    error: "",
+    indexSlide: 0,
+    sliderDirection: "",
     imagesSkills: [],
     social: [
       {
@@ -38,6 +41,13 @@ export default createStore({
       },
       {
         type: "fab",
+        name: "linkedin",
+        path: "https://www.linkedin.com/in/vitaliy-kiselev/",
+        text: "Написать в LinkedIn",
+      },
+
+      {
+        type: "fab",
         name: "instagram",
         path: "https://www.instagram.com/vitos03/",
         text: "О себе в картинках",
@@ -56,24 +66,123 @@ export default createStore({
       },
     ],
     menu: [
-      { name: "Обо мне", path: "/aboutme" },
-      { name: "Портфолио", path: "/portfolio" },
-      { name: "Навыки", path: "/skills" },
-      { name: "Контакты", path: "/contact" },
-      { name: "FAQ", path: "/faq" },
+      { name: "Обо мне", path: "/aboutme", icon: "home", type: "fas" },
+      {
+        name: "Портфолио",
+        path: "/portfolio",
+        icon: "camera-retro",
+        type: "fas",
+      },
+      { name: "Навыки", path: "/skills", icon: "user-circle", type: "fas" },
+      {
+        name: "Контакты",
+        path: "/contact",
+        icon: "comment-dots",
+        type: "fas",
+      },
+    ],
+    portfolio: [
+      {
+        name: "city",
+        path: "city",
+        text:
+          "Принял участие в фриланс проекте (аналог игры манаполия), в мои задачи входила верстка по макету в Figma и реализация личного кабинета пользователя. В проекте использовался HTML, CSS, VueJs",
+        ref: "https://github.com/Vit4ly/CityCash",
+      },
+      {
+        name: "databaseVue3",
+        path: "DataBaseVue3",
+        text:
+          "Реализация работы с базой данных и создания нового пользователя с возможностью добавления и удаления на сервере. В качестве инструментов VueJS3, в качестве базы данных FireBase",
+        ref: "https://vue3-data-base-http.web.app/",
+      },
+      {
+        name: "form",
+        path: "form",
+        text:
+          "Реализация формы регистрации на Vue Js c дополнительной валидацией c Vuelidate ",
+        ref: "https://vit4ly.github.io/form-medods/",
+      },
+      {
+        name: "JSBuilder",
+        path: "JSBuilder",
+        text:
+          "Данный конструктор сайтов реализован в процессе прохождения курса, c применением принципов SOLID, OOP на чистом JS",
+        ref: "https://pure-javascript-constructor.web.app/",
+      },
+      {
+        name: "lazyLoad",
+        path: "lazyloadjs",
+        text:
+          "В данном проекте реализовал Lazy Load картинок загруженных с сервера и добавил возможность подгрузки дополнительных изображений по нажатию на кнопку. В качестве инструментов JS, Parcel, ,база данных и хостинг FireBase",
+        ref: "https://lucky-group-test.web.app/",
+      },
+      {
+        name: "resume",
+        path: "resume",
+        text: "Реализация проекта для создания резюме на VueJs",
+        ref: "https://vue-resume-bdc78.firebaseapp.com/",
+      },
+      {
+        name: "shop",
+        path: "tgp",
+        text:
+          "Данный проект был реализован в качестве тестового, из инструментов HTML,CSS,JS,VueJS, Vuex, Vue-router",
+        ref: "https://tages-gamp-test.web.app/",
+      },
+      {
+        name: "TodoJS",
+        path: "TodoJS",
+        text: "Стандартный ToDo на HTML,CSS,JS и немного анимации.",
+        ref: "https://vit4ly.github.io/todo-Js-2/",
+      },
+      {
+        name: "Yebo",
+        path: "Yebo",
+        text:
+          "Данный landing page реализовал в качестве прктики работы с Grid.",
+        ref: "https://vit4ly.github.io/yebo-bike/",
+      },
+      {
+        name: "resume",
+        path: "resume-v1",
+        text: "Это первый сайт портфолио.",
+        ref: "https://vit4ly.github.io/Portfolio/",
+      },
     ],
   },
   mutations: {
     isShown(state) {
       state.isShow = !state.isShow;
     },
-    // eventClick(state, event) {
-    //     console.log(event.target.parentNode)
-    //     let eve = event.target.parentNode.className
-    //     if(eve !== 'container' || eve.length === 0) {
-    //        state.isShow = false
-    //     }
-    // }
+    isShownModal(state) {
+      state.isShowModal = !state.isShowModal;
+    },
+    setIdxSlide(state, idx) {
+      state.indexSlide = idx;
+    },
+    btnNext(state) {
+      state.indexSlide++;
+      if (state.indexSlide >= state.portfolio.length) {
+        state.indexSlide = 0;
+      }
+      state.sliderDirection = "slide-right";
+    },
+    btnPrev(state) {
+      state.indexSlide--;
+      if (state.indexSlide < 0) {
+        state.indexSlide = state.portfolio.length - 1;
+      }
+      state.sliderDirection = "slide-left";
+    },
+    eventClickClose(state, event) {
+      if (event.target.className !== "nav-bar__inner") {
+        state.isShow = false;
+      }
+    },
+    navbarShow(state) {
+      state.isShow = !state.isShow;
+    },
   },
   getters: {
     getImagesSkills(state) {
@@ -96,6 +205,24 @@ export default createStore({
     getIsShown(state) {
       return state.isShow;
     },
+    getIsShownModal(state) {
+      return state.isShowModal;
+    },
+    getError(state) {
+      return state.error;
+    },
+    getPortfolio(state) {
+      return state.portfolio;
+    },
+    getCurrentSlide(state) {
+      return state.portfolio[state.indexSlide];
+    },
+    getIdxSlide(state) {
+      return state.indexSlide;
+    },
+    getSliderDirection(state) {
+      return state.sliderDirection;
+    },
   },
   actions: {
     async requestImagesSkills(context) {
@@ -106,6 +233,7 @@ export default createStore({
         context.state.imagesSkills = await response.json();
       } catch (e) {
         context.state.error = e;
+        setTimeout(() => (context.state.error = ""), 3000);
       }
     },
   },
