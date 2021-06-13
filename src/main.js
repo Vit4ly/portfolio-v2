@@ -18,6 +18,8 @@ import {
   faFilePdf,
   faAngleRight,
   faAngleLeft,
+  faLaptopCode,
+  faCopyright,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faTelegram,
@@ -49,6 +51,8 @@ library.add(
   faUser,
   faFilePdf,
   faMobileAlt,
+  faLaptopCode,
+  faCopyright,
   faAngleDoubleRight,
   faAngleRight,
   faAngleLeft,

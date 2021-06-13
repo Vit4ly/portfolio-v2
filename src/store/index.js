@@ -30,7 +30,7 @@ export default createStore({
       {
         type: "fab",
         name: "telegram",
-        path: "tg://resolve?domain=Vit4lyKiselev",
+        path: "tg://resolve?domain=@Vit4liyKiselev",
         text: "Написать в Telegram",
       },
       {
@@ -50,7 +50,7 @@ export default createStore({
         type: "fab",
         name: "instagram",
         path: "https://www.instagram.com/vitos03/",
-        text: "О себе в картинках",
+        text: "Instagram",
       },
       {
         type: "fab",
@@ -121,7 +121,7 @@ export default createStore({
         name: "resume",
         path: "resume",
         text: "Реализация проекта для создания резюме на VueJs",
-        ref: "https://vue-resume-bdc78.firebaseapp.com/",
+        ref: "https://vue-resume-9ec6c.web.app/",
       },
       {
         name: "shop",
@@ -148,6 +148,18 @@ export default createStore({
         path: "resume-v1",
         text: "Это первый сайт портфолио.",
         ref: "https://vit4ly.github.io/Portfolio/",
+      },
+      {
+        name: "drag-n-drop",
+        path: "drag-n-drop",
+        text: "Реализация Drag-n-drop на чистом JS",
+        ref: "https://vit4ly.github.io/drag-n-drop/",
+      },
+      {
+        name: "Slid-card",
+        path: "slide-card",
+        text: "Реализация слайдера на чистом JS",
+        ref: "https://vit4ly.github.io/01-cards-sources/",
       },
     ],
   },

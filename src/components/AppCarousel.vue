@@ -22,8 +22,9 @@ export default {
   position: relative;
   overflow: hidden;
   max-width: 800px;
+  max-height: 50vh;
   width: 80vw;
-  height: 60vh;
+  //height: 60vh;
   z-index: 10;
   @media (max-width: 1024px) {
     //width: 90vw;
