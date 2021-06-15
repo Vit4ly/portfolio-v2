@@ -40,7 +40,7 @@
 
     <div class="work__btn">
       <a :href="getCurrentSlide.ref" target="_blank" class="work__link"
-        >Поспотреть проект</a
+        >Посмотреть проект</a
       >
     </div>
   </div>

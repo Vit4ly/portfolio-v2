@@ -139,8 +139,7 @@ export default createStore({
       {
         name: "Yebo",
         path: "Yebo",
-        text:
-          "Данный landing page реализовал в качестве прктики работы с Grid.",
+        text: "landing page реализовал в качестве прктики работы с Grid.",
         ref: "https://vit4ly.github.io/yebo-bike/",
       },
       {
@@ -158,8 +157,26 @@ export default createStore({
       {
         name: "Slid-card",
         path: "slide-card",
-        text: "Реализация слайдера на чистом JS",
+        text: "Реализация плагина на чистом JS",
         ref: "https://vit4ly.github.io/01-cards-sources/",
+      },
+      {
+        name: "Slider",
+        path: "Slider",
+        text: "Реализация плагина на чистом JS",
+        ref: "https://vit4ly.github.io/slider-sources/",
+      },
+      {
+        name: "Board-mini-game",
+        path: "board",
+        text: "Реализация плагина на чистом JS",
+        ref: "https://vit4ly.github.io/board-sources/",
+      },
+      {
+        name: "Aim game",
+        path: "aim",
+        text: "Реализация мини игры на JS",
+        ref: "https://vit4ly.github.io/aim-game-sources/",
       },
     ],
   },
