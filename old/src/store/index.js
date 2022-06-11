@@ -30,7 +30,7 @@ export default createStore({
       {
         type: "fab",
         name: "telegram",
-        path: "tg://resolve?domain=@Vit4liyKiselev",
+        path: "https://t.me/Vit4liyKiselev",
         text: "Написать в Telegram",
       },
       {
