@@ -3,9 +3,8 @@ import {useDataStore} from '../stores/Store';
 import IconBase from '../components/Base/IconBase.vue'
 import Loader from '../components/Base/Loader.vue'
 import {onMounted, ref} from "vue";
-import {useRoute, useRouter} from "vue-router";
+import {useRouter} from "vue-router";
 
-// const route = useRoute()
 const router = useRouter()
 const store = useDataStore()
 
@@ -13,13 +12,10 @@ const contacts = store.CONTACT_LIST
 const isVisible = ref(false)
 const isLoad = ref(false)
 
-
-
-
 function next() {
   isLoad.value = true;
   setTimeout(() => {
-    router.push("/aboutme");
+    router.push("/about");
     isLoad.value = false;
   }, 1000);
 }
@@ -142,7 +138,6 @@ onMounted(() => {
 
   &__link {
     margin-top: 15vh;
-    margin-left: 19vw;
     display: flex;
     flex-direction: column;
     align-items: center;
